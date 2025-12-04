@@ -1,30 +1,37 @@
 import csv
 import os
 
-FILE_NAME = "expenses.csv"
+FILE_NAME ="expenses.csv"
+HEADER = ["id", "title", "amount", "category"]
 
 def init_file():
-    if not os.path.exists(FILE_NAME):
-        with open(FILE_NAME, "w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["id", "title", "amount", "category"])
-
+    try:
+        if not os.path.exists(FILE_NAME) or os.path.getsize(FILE_NAME) == 0:
+            with open(FILE_NAME, "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(HEADER)
+    except Exception as e:
+        print(f"Error initializing file: {e}")
+        log_error(e)
 
 # Read all expenses
 def read_expenses():
     try:
         expenses = []
 
-        with open(FILE_NAME, "r") as file:
+        with open(FILE_NAME, "r", newline="") as file:
             reader = csv.DictReader(file)
             for row in reader:
+                # skip rows without an amount as it will not consider as an expense
+                if not row.get("amount"):
+                    continue
                 row["amount"] = float(row["amount"])
                 expenses.append(row)
-
         return expenses
 
     except Exception as e:
         print(f"Error reading file: {e}")
+        log_error(e)
         return []
 
 
@@ -36,16 +43,17 @@ def add_expense():
         category = input("Category: ")
 
         expenses = read_expenses()
-        new_id = len(expenses) + 1
+        new_id = str(len(expenses) + 1)
 
         with open(FILE_NAME, "a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([new_id, title, amount, category])
 
         print("Expense added successfully!")
-
     except Exception as e:
         print(f"Error adding expense: {e}")
+        log_error(e)
+
 
 
 # Delete expense by id
@@ -62,14 +70,15 @@ def delete_expense():
 
         with open(FILE_NAME, "w", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(["id", "title", "amount", "category"])
+            writer.writerow(HEADER)
             for exp in updated:
-                writer.writerow(exp.values())
+                writer.writerow([exp["id"], exp["title"], exp["amount"], exp["category"]])
 
         print("Expense deleted!")
 
     except Exception as e:
         print(f"Error deleting expense: {e}")
+        log_error(e)
 
 
 # Update expense
@@ -84,9 +93,9 @@ def update_expense():
             if exp["id"] == id_to_update:
                 found = True
                 print("Leave blank to keep old value.")
-                new_title = input(f"Title ({exp['title']}): ") or exp['title']
-                new_amount = input(f"Amount ({exp['amount']}): ") or exp['amount']
-                new_category = input(f"Category ({exp['category']}): ") or exp['category']
+                new_title = input(f"Title ({exp['title']}): ")
+                new_amount = input(f"Amount ({exp['amount']}): ")
+                new_category = input(f"Category ({exp['category']}): ")
 
                 exp["title"] = new_title
                 exp["amount"] = float(new_amount)
@@ -99,57 +108,64 @@ def update_expense():
         # Save updated list
         with open(FILE_NAME, "w", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(["id", "title", "amount", "category"])
+            writer.writerow(HEADER)
             for exp in expenses:
-                writer.writerow(exp.values())
-
+                writer.writerow([exp["id"], exp["title"], exp["amount"], exp["category"]])
         print("Expense updated!")
 
     except Exception as e:
         print(f"Error updating expense: {e}")
+        log_error(e)
 
 
 # Show all expenses
 def show_expenses():
-    expenses = read_expenses()
+    try:
+        expenses = read_expenses()
+        if not expenses:
+            print("No expenses recorded.")
+            return
+        print("All Expenses:")
+        for exp in expenses:
+            print(f"{exp['id']}. {exp['title']} - {exp['amount']} ({exp['category']})")
+    except Exception as e:
+        print(f"Error showing expenses: {e}")
+        log_error(e)
 
-    if not expenses:
-        print("No expenses recorded.")
-        return
 
-    print("\n---- All Expenses ----")
-    for exp in expenses:
-        print(f"{exp['id']}. {exp['title']} - {exp['amount']} ({exp['category']})")
-    print("----------------------\n")
-
+# logg errors to the file
+def log_error(error):
+    with open("errors.log", "a") as f:
+        f.write(str(error) + "\n")
 
 # Menu loop
 def menu():
-    init_file()
+    try:
+        init_file()
+        while True:
+            print("Expense Tracker")
+            print("1. Add Expense")
+            print("2. Delete Expense")
+            print("3. Update Expense")
+            print("4. View All Expenses")
+            print("5. Exit")
 
-    while True:
-        print("\nExpense Tracker")
-        print("1. Add Expense")
-        print("2. Delete Expense")
-        print("3. Update Expense")
-        print("4. View All Expenses")
-        print("5. Exit")
-
-        choice = input("Choose an option: ")
-
-        if choice == "1":
-            add_expense()
-        elif choice == "2":
-            delete_expense()
-        elif choice == "3":
-            update_expense()
-        elif choice == "4":
-            show_expenses()
-        elif choice == "5":
-            break
-        else:
-            print("Invalid choice! Try again.")
-
+            choice = input("Choose an option: ")
+            if choice == "1":
+                add_expense()
+            elif choice == "2":
+                delete_expense()
+            elif choice == "3":
+                update_expense()
+            elif choice == "4":
+                show_expenses()
+            elif choice == "5":
+                break
+            else:
+                print("Invalid choice! Try again.")
+    except Exception as e:
+        print(f"Error in menu: {e}")
+        log_error(e)
 
 if __name__ == "__main__":
     menu()

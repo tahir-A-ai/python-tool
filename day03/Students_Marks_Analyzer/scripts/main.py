@@ -4,8 +4,8 @@ from modules.writer import write_summary
 
 def main():
     try:
-        input_file = "../data/student.csv"
-        output_file = "../data/summary.json"
+        input_file = "data/student.csv"
+        output_file = "data/summary.json"
 
         data = read_csv(input_file)
         summary = calculate_summary(data)
@@ -16,6 +16,6 @@ def main():
 
     except Exception as e:
         print(f"Error in main program: {e}")
-
+        
 if __name__ == "__main__":
     main()
