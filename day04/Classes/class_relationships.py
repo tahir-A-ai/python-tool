@@ -2,8 +2,6 @@
 """
 1. Association (Weakest relationship) > one class using another class temp
 """
-from pyclbr import Class
-
 
 class Teacher:
     def teach(self, subject):

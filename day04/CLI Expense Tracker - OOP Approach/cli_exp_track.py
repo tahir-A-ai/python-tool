@@ -2,6 +2,10 @@ import csv
 import os
 
 class ExpenseTracker:
+    """
+    A simple CLI-based expense tracker that allows the user
+    to add, update, delete, and view expenses stored in a csv file.
+    """
     FILE_NAME = "expenses.csv"
     HEADER = ["id", "title", "amount", "category"]
 
@@ -22,7 +26,7 @@ class ExpenseTracker:
 
     def read_expenses(self):
         try:
-            """read all expenses"""
+            """Read all expense records from the CSV file."""
             expenses = []
 
             with open(self.FILE_NAME, "r", newline="") as file:
@@ -84,7 +88,7 @@ class ExpenseTracker:
             self.log_error(e)
 
     def update_expense(self):
-        """update existing expense"""
+        """Update existing Expense"""
         try:
             id_to_update = input("Enter ID to update: ")
 
@@ -120,7 +124,7 @@ class ExpenseTracker:
             self.log_error(e)
 
     def show_expenses(self):
-        """show all expenses"""
+        """Show all expenses"""
         try:
             expenses = self.read_expenses()
             if not expenses:
