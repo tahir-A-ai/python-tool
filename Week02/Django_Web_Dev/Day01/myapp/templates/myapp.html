@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{%block title %}
+MyApp Home Page
+{% endblock %}
+
+
+{%block content%}
+<div class="grid grid-cols-6 gap-4">
+    <h3 class="text-3xl">All users</h3>
+
+    {% for user in users %}
+    <div class="bg-blue-800 p-3">
+        <img class="rounded" src="{{user.image.url}}" alt="">
+        <h4 class="text-center">{{user.name}} - {{user.id}}</h4>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
