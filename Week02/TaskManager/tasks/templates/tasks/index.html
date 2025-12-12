@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
+</head>
+<body>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold m-0">My Tasks 📝</h2>
+                <span class="text-muted" id="date-display">Today</span>
+            </div>
+            <a href="{% url 'logout' %}" class="btn btn-outline-success btn-sm rounded-pill px-3 mb-3">
+            Sign Out ➔
+            </a>
+
+            <div class="card custom-card p-4 mb-5">
+                <h5 class="mb-3 fw-bold text-secondary">Add New Task</h5>
+                <form id="task-form">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <input type="text" id="title" class="form-control" placeholder="What needs to be done?" required>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="category-select" class="form-select" required>
+                                <option value="" disabled selected>Category...</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <textarea id="description" class="form-control" rows="2" placeholder="Add a description (optional)"></textarea>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-xs text-muted ms-1">Due Date</label>
+                            <input type="date" id="due-date" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-xs text-muted ms-1">Priority</label>
+                            <select id="priority" class="form-select">
+                                <option value="LOW">Low</option>
+                                <option value="MED" selected>Medium</option>
+                                <option value="HIGH">High</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-xs text-muted ms-1">Status</label>
+                            <select id="status-select" class="form-select">
+                                <option value="PEND" selected>Pending</option>
+                                <option value="COMP">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" id="submit-btn" class="btn btn-primary-custom w-100">
+                                + Create Task
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="task-list" class="row g-3">
+                <div class="text-center py-5 text-muted">Loading your workspace...</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'tasks/script.js' %}"></script>
+<script>
+    // shows today's date in the header
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('date-display').innerText = new Date().toLocaleDateString('en-US', options);
+</script>
+
+</body>
+</html>

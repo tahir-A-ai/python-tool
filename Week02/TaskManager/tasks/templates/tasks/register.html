@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
+</head>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card custom-card p-5 shadow-lg" style="width: 400px;">
+        
+        <div class="text-center mb-4">
+            <h3 class="fw-bold text-dark">Join Us 🚀</h3>
+            <p class="text-muted text-xs">Create your account to start organizing.</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label text-xs text-muted ms-1">{{ field.label }}</label>
+                    <script>
+                        // Tiny script to inject our CSS class into Django's inputs
+                        // This is a quick trick to avoid writing a custom Form class
+                        document.write('{{ field }}'.replace('input ', 'input class="form-control" '));
+                    </script>
+                    
+                    {% if field.errors %}
+                        <div class="text-danger text-xs mt-1">{{ field.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary-custom w-100 mt-3">Create Account</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <span class="text-muted text-xs">Already have an account? </span>
+            <a href="{% url 'login' %}" class="text-decoration-none fw-bold" style="color: #6c5ce7;">Log In</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

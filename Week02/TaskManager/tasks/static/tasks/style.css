@@ -1,0 +1,65 @@
+/* tasks/static/tasks/style.css */
+
+body {
+    background-color: #f0f2f5; /* Soft Dashboard Grey */
+    font-family: 'Poppins', sans-serif;
+    color: #343a40;
+}
+
+/* Card Aesthetics */
+.custom-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Inputs */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border-color: #6c5ce7; /* Modern Purple/Blue focus */
+    background-color: white;
+}
+
+/* Custom Button */
+.btn-primary-custom {
+    background-color: #6c5ce7;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.3s;
+}
+
+.btn-primary-custom:hover {
+    background-color: #5b4cc4;
+    transform: scale(1.02);
+}
+
+/* Badges */
+.badge-soft {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+.bg-soft-success { background-color: #d1e7dd; color: #0f5132; }
+.bg-soft-warning { background-color: #fff3cd; color: #664d03; }
+.bg-soft-danger  { background-color: #f8d7da; color: #842029; }
+.bg-soft-info    { background-color: #cff4fc; color: #055160; }
+
+/* Typography */
+.text-xs { font-size: 0.85rem; }
