@@ -1,7 +1,7 @@
 const API_URL = '/api/tasks/';
 const CAT_URL = '/api/categories/';
 
-let currentEditId = null; 
+let currentEditId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCategories();
@@ -14,10 +14,10 @@ async function fetchCategories() {
         const response = await fetch(CAT_URL);
         if (!response.ok) throw new Error("Failed to fetch");
         const categories = await response.json();
-        
+
         const select = document.getElementById('category-select');
-        select.innerHTML = '<option value="" disabled selected>Category...</option>'; 
-        
+        select.innerHTML = '<option value="" disabled selected>Category...</option>';
+
         categories.forEach(cat => {
             select.innerHTML += `<option value="${cat.id}">${cat.categ_name}</option>`;
         });
@@ -30,16 +30,16 @@ async function fetchCategories() {
 async function fetchTasks() {
     const response = await fetch(API_URL);
     const tasks = await response.json();
-    
+
     const container = document.getElementById('task-list');
     container.innerHTML = '';
 
     tasks.forEach(task => {
         // Determine Badge Colors
-        const statusBadge = task.status === 'COMP' 
-            ? '<span class="badge badge-soft bg-soft-success">Completed</span>' 
+        const statusBadge = task.status === 'COMP'
+            ? '<span class="badge badge-soft bg-soft-success">Completed</span>'
             : '<span class="badge badge-soft bg-soft-warning">Pending</span>';
-        
+
         const priorityColor = task.priority === 'HIGH' ? 'bg-soft-danger' : (task.priority === 'MED' ? 'bg-soft-info' : 'bg-soft-success');
 
         // Render Card
@@ -75,7 +75,7 @@ async function fetchTasks() {
 // 3. Handle Form Submit
 document.getElementById('task-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     // Get values from ALL inputs
     const title = document.getElementById('title').value;
     const priority = document.getElementById('priority').value;
@@ -85,9 +85,9 @@ document.getElementById('task-form').addEventListener('submit', async (e) => {
     const dueDate = document.getElementById('due-date').value;
 
     // Validate Due Date
-    const data = { 
-        title: title, 
-        priority: priority, 
+    const data = {
+        title: title,
+        priority: priority,
         category: category,
         status: status,
         description: description,
@@ -112,6 +112,7 @@ document.getElementById('task-form').addEventListener('submit', async (e) => {
             alert("Error: " + JSON.stringify(errData));
             return;
         }
+        alert("Data create Successfully")
 
         resetForm();
         fetchTasks();
@@ -122,7 +123,7 @@ document.getElementById('task-form').addEventListener('submit', async (e) => {
 
 // 4. Delete Task
 async function deleteTask(id) {
-    if(confirm("Delete this task?")) {
+    if (confirm("Delete this task?")) {
         await fetch(`${API_URL}${id}/`, {
             method: 'DELETE',
             headers: { 'X-CSRFToken': getCookie('csrftoken') }
@@ -135,7 +136,7 @@ async function deleteTask(id) {
 // We fetch the single task details first to ensure we populate all fields correctly
 async function enableEditMode(id) {
     currentEditId = id;
-    
+
     // Fetch fresh data for this specific task
     const response = await fetch(`${API_URL}${id}/`);
     const task = await response.json();
@@ -152,7 +153,7 @@ async function enableEditMode(id) {
     const btn = document.getElementById('submit-btn');
     btn.innerText = "Update Task";
     btn.classList.replace('btn-primary-custom', 'btn-warning');
-    
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
