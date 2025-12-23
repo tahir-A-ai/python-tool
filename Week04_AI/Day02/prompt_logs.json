@@ -1,0 +1,37 @@
+[
+    {
+        "timestamp": "2025-12-22T19:33:31.196211",
+        "task_type": "Summarization",
+        "model": "gemini-2.5-flash",
+        "prompt": "\n    You are an expert editor. \n    Summarize the following text into exactly ONE punchy sentence.\n    \n    Text: \"The future of AI points towards deeper integration into daily life, bringing transformative changes like human-level reasoning (AGI) potentially by 2027, revolutionizing healthcare, work, and creativity, but also posing challenges with job displacement, deepfakes, and ethics. Expect more powerful virtual assistants, autonomous systems, personalized medicine, and interactive entertainment, alongside critical debates on regulation, consciousness, and human-AI collaboration to manage risks and unlock benefits like solving complex global problems.\"\n    ",
+        "response": "AI's imminent leap to human-level intelligence promises to revolutionize every aspect of life with unparalleled benefits, yet demands urgent confrontation of its profound societal risks."
+    },
+    {
+        "timestamp": "2025-12-22T19:35:02.634793",
+        "task_type": "Rewriting",
+        "model": "gemini-2.5-flash",
+        "prompt": "\n    Rewrite the following text.\n    Target Audience/Style: for a 5yo\n    \n    Original Text: \"as AI agents become better at completing tasks autonomously, more companies will implement them to reduce labor costs in 2026. Companies that succeed in 2026 will rebuild their operations so that AI handles everything it can, while humans focus on oversight, creativity, and complex judgment.\"\n    ",
+        "response": "Okay, imagine this!\n\nSoon, super smart robot helpers will be really, really good at doing jobs all by themselves, like tidying up or finding things.\n\nSo, lots of grown-up companies will start using them to help make work easier and faster!\n\nThe robot helpers will do all the easy jobs that don't need much thinking. And the grown-ups? They get to do the fun, super important stuff! They'll watch to make sure the robots are doing great, think up brand new ideas, and make all the really tricky decisions, like what amazing new game to invent next!"
+    },
+    {
+        "timestamp": "2025-12-22T19:38:05.554680",
+        "task_type": "Classification",
+        "model": "gemini-2.5-flash",
+        "prompt": "\n    Analyze the sentiment of this text.\n    Rules:\n    1. Respond with ONLY one word.\n    2. Choose from: [POSITIVE, NEGATIVE, NEUTRAL, URGENT].\n    3. Do not add punctuation or explanation.\n    \n    Text: \"I ordered food from FoodPanda and It was really delicious, Recommended!\"\n    ",
+        "response": "POSITIVE"
+    },
+    {
+        "timestamp": "2025-12-22T19:38:24.750642",
+        "task_type": "Classification",
+        "model": "gemini-2.5-flash",
+        "prompt": "\n    Analyze the sentiment of this text.\n    Rules:\n    1. Respond with ONLY one word.\n    2. Choose from: [POSITIVE, NEGATIVE, NEUTRAL, URGENT].\n    3. Do not add punctuation or explanation.\n    \n    Text: \"very poor quality of clothes\"\n    ",
+        "response": "NEGATIVE"
+    },
+    {
+        "timestamp": "2025-12-23T10:26:53.056750",
+        "task_type": "Classification",
+        "model": "gemini-2.5-flash",
+        "prompt": "\n    Analyze the sentiment of this text.\n    Rules:\n    1. Respond with ONLY one word.\n    2. Choose from: [POSITIVE, NEGATIVE, NEUTRAL, URGENT].\n    3. Do not add punctuation or explanation.\n    \n    Text: \"I need this urgent.\"\n    ",
+        "response": "URGENT"
+    }
+]
