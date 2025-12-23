@@ -41,6 +41,7 @@ This project simulates a real-world backend AI workflow, moving from raw "dirty"
 * Verified the saved model by reloading it and running a test prediction on new data.
 
 ## Project Structure
+```text
 Week04_AI/
 ├── .venv/              # Local Python Environment (Hidden)
 ├── data/
