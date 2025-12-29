@@ -1,0 +1,59 @@
+[
+    {
+        "timestamp": "2025-12-23T14:40:10.372012",
+        "task": "Extract Keywords",
+        "input_snippet": "The Evolution of AI. AI has come a long way since ...",
+        "output": [
+            "AI",
+            "machine learning",
+            "deep learning",
+            "generative AI",
+            "ChatGPT",
+            "OpenAI",
+            "Google Gemini",
+            "AI evolution",
+            "IBM Watson",
+            "AI models"
+        ]
+    },
+    {
+        "timestamp": "2025-12-23T15:00:19.089193",
+        "task": "Sentiment Analysis",
+        "input_snippet": "The future of AI points towards deeper integration...",
+        "output": {
+            "sentiment": "POSITIVE",
+            "score": 0.9
+        }
+    },
+    {
+        "timestamp": "2025-12-23T15:01:06.186043",
+        "task": "Sentiment Analysis",
+        "input_snippet": " Automation replaces human workers in many sectors...",
+        "output": {
+            "sentiment": "NEGATIVE",
+            "score": 0.85
+        }
+    },
+    {
+        "timestamp": "2025-12-23T15:10:03.043542",
+        "task": "Sentiment Analysis",
+        "input_snippet": "Automation replaces human workers in many sectors,...",
+        "output": {
+            "sentiment": "NEGATIVE",
+            "score": 0.85
+        }
+    },
+    {
+        "timestamp": "2025-12-23T15:19:28.324446",
+        "task": "Summarize Bullets",
+        "input_snippet": "The future of AI points towards deeper integration...",
+        "output": [
+            "\ud83d\udd39 AI will deeply integrate into daily life, bringing transformative changes.",
+            "\ud83d\udd39 AGI (human-level reasoning) is potentially achievable by 2027, revolutionizing healthcare, work, and creativity.",
+            "\ud83d\udd39 Significant challenges include job displacement, deepfakes, and ethical dilemmas.",
+            "\ud83d\udd39 Expect advancements in powerful virtual assistants, autonomous systems, personalized medicine, and interactive entertainment.",
+            "\ud83d\udd39 Critical debates are needed on AI regulation, consciousness, and human-AI collaboration.",
+            "\ud83d\udd39 The goal is to manage risks and unlock benefits, such as solving complex global problems."
+        ]
+    }
+]
