@@ -1,0 +1,18 @@
+# --- Core Frameworks ---
+django
+fastapi
+uvicorn
+python-dotenv
+
+# --- Communication ---
+requests
+
+# --- Database ---
+# faiss DB
+faiss-cpu
+numpy
+
+# --- AI & Utils ---
+google-generativeai
+pypdf
+tiktoken

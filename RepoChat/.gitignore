@@ -1,0 +1,19 @@
+# Python & OS
+__pycache__/
+*.pyc
+venv/
+.DS_Store
+
+# Environment Variables
+.env
+
+# Database
+db.sqlite3
+
+# Django Uploads
+media/
+static/
+
+# AI Engine Data (Generated files)
+ai_engine/faiss_index.bin
+ai_engine/metadata.pkl
