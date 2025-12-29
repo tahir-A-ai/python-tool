@@ -1,7 +1,20 @@
-# Virtual Environment
 venv/
-.venv/
-# Python Caches
-__pycache__/
+*/venv/
+venv/
+*/.venv/
+.env
+*.pkl
 *.pyc
-db.sqlite3
+__pycache__/
+*/__pycache__/
+*.sqlite3
+*/db.sqlite3
+.DS_Store
+
+# Django Uploads
+media/
+static/
+
+# AI Engine Data (Generated files)
+ai_engine/faiss_index.bin
+ai_engine/metadata.pkl
